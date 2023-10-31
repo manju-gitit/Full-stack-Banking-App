@@ -5,8 +5,8 @@
 
 **Installation Guidelines:**
 
-git clone git@github.com:manju-gitit/Full-stack-Banking-App.git
-From the root of the cloned application dir., to run app: node index.js
+<p>git clone git@github.com:manju-gitit/Full-stack-Banking-App.git</p>
+<p>To run app CD to root folder and then: node index.js</p>
 
 **Technology Stack:**
 
