@@ -22,14 +22,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Build Frontend - Bank App
-        working-directory: ./frontend
+        working-directory: "./frontend"
         run: |
           npm install
           npm start
           timeout-minutes: 10
 
       - name: Build Backend - Bank App
-        working-directory: .
+        working-directory: "."
         run: |
           npm install
           npm i -g nodemon
@@ -41,6 +41,6 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           expires: 30d
           projectId: banking-app-61e33
-          entryPoint: ./index.js
+          entryPoint: "./index.js"
           firebaseToolsVersion: latest
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
