@@ -21,11 +21,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Build Frontend - Bank App
-        working-directory: ./frontend
-        run: |
-          npm ci
-          npm start
+      #- name: Build Frontend - Bank App
+      #  working-directory: ./frontend
+      #  run: |
+      #    npm ci
+      #    npm start
 
       - name: Build Backend - Bank App
         working-directory: .
