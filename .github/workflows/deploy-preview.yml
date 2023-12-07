@@ -31,6 +31,7 @@ jobs:
         working-directory: .
         run: |
           npm ci
+          npm ci nodemon
           npm start
 
       - name: Deploy to Firebase Hosting
