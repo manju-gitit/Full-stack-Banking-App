@@ -133,6 +133,8 @@ app.get('/account/all', function (req, res) {
     });
 });
 
+module.exports = app;
+
 app.listen(3001, function () {
     console.log('Server Running on port 3001!');
 });
