@@ -24,14 +24,14 @@ jobs:
       - name: Build Frontend - Bank App
         working-directory: ./frontend
         run: |
-          npm ci
+          npm install
           npm start
           timeout-minutes: 10
 
       - name: Build Backend - Bank App
         working-directory: .
         run: |
-          npm ci
+          npm install
           npm i -g nodemon
           npm start
 
