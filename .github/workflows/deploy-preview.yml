@@ -28,7 +28,7 @@ jobs:
           npm start
 
       - name: Build Backend - Bank App
-        working-directory: ./backend
+        working-directory: .
         run: |
           npm ci
           npm start
@@ -39,6 +39,6 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           expires: 30d
           projectId: banking-app-61e33
-          entryPoint: .
+          entryPoint: ./index.js
           firebaseToolsVersion: latest
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
