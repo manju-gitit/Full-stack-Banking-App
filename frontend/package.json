@@ -22,7 +22,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "prod": "NODE_ENV=production react-scripts build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -31,8 +31,8 @@ const provider = new GoogleAuthProvider();
 const nullUser = { balance: 0 };
 
 function App() {
-  const baseUrl = process.env.NODE_ENV === 'production' ? 'http://3.140.113.245:3001' : 'http://localhost:3001';
-
+  const baseUrl = 'http://3.140.113.245:3001'
+  // : 'http://localhost:3001';
   const [status, setStatus] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
