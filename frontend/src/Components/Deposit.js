@@ -26,11 +26,11 @@ export function Deposit({ adjustMoney, balance }) {
     return (
         <Card
             bgcolor="info"
-            header='Deposit'
-            status=''
+            header="Deposit"
+            status={setStatusMessage}
             body=
             {
-                <>
+                <div>
                     Current Account Balance {balance}
                     <br />
                     Deposit Amount
@@ -53,7 +53,7 @@ export function Deposit({ adjustMoney, balance }) {
                         Deposit
                     </button>
 
-                </>
+                </div>
 
             }
         />
