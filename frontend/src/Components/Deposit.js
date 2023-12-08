@@ -17,9 +17,14 @@ export function Deposit({ adjustMoney, balance }) {
             return;
         }
 
-        adjustMoney(depositAmount)
-        setDepositAmount('');
-        setStatusMessage('Deposit successful');
+        try{
+            adjustMoney(depositAmount)
+            setDepositAmount('');
+            setStatusMessage('Deposit successful');         
+        }catch(err) {
+            throw err
+        }
+
 
     }
 
