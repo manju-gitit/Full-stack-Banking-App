@@ -11,7 +11,7 @@ services:
     # Step 5.3 - Point build step to the server directory
     image: server
     restart: unless-stopped
-    env_file: ./config/${ENV}.env
+    env_file: ./config/env.${ENV}
     ports:
       # Step 5.4 - Add the port that the server application runs on - (port:port).
       - '3001:3001'    
