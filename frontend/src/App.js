@@ -54,30 +54,24 @@ function App() {
       })
   }
 
-  let adjustMoney = async (amount) => {
-    try {
-      const res = await fetch(`${baseUrl}/account/update/${user.email}/${Number(amount)}`);
-      if (!res.ok) {
-        throw new Error('Failed to update balance');
-      }
-  
-      const newBalance = await res.json();
-      setUser({ ...user, balance: newBalance });
-  
-      if (amount === null) {
-        setStatus('Balance error');
-      } else if (typeof user.balance !== 'number') {
-        setStatus('Invalid amount, Please contact support');
-      } else {
-        setStatus(null); // Reset status if no errors
-      }
-  
-      return { balance: user.balance, status: status };
-    } catch (err) {
-      console.error(err);
-      setStatus('Error updating balance');
-      return { balance: user.balance, status: status };
+  let adjustMoney = (amount) => {
+    fetch(`${baseUrl}/account/update/${user.email}/${Number(amount)}`)
+      .then(async (res) => {
+        const newBalance = await res.json();
+        setUser({ ...user, balance: newBalance })
+        if (amount === null) {
+          setStatus('Balance error')
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+
+      })
+    if (user.balance != typeof Number) {
+      setStatus('Invalid amount, Please contact support')
+      return status
     }
+    return (user.balance, status)
   };
 
   function logIn(email, password) {
