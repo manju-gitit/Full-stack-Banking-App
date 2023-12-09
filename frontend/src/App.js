@@ -31,8 +31,8 @@ const provider = new GoogleAuthProvider();
 const nullUser = { balance: 0 };
 
 function App() {
-  const baseUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
-
+  const baseUrl = 'http://3.140.113.245:3001'
+  // : 'http://localhost:3001';
   const [status, setStatus] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -54,28 +54,37 @@ function App() {
       })
   }
 
-  let adjustMoney = (amount) => {
-    fetch(`${baseUrl}/account/update/${user.email}/${Number(amount)}`)
-      .then(async (res) => {
-        const newBalance = await res.json();
-        setUser({ ...user, balance: newBalance })
-        if (amount === null) {
-          setStatus('Balance error')
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+  let adjustMoney = async (amount) => {
+    try {
+      const res = await fetch(`${baseUrl}/account/update/${user.email}/${Number(amount)}`);
+      if (!res.ok) {
+        throw new Error('Failed to update balance');
+      }
 
-      })
-    if (user.balance != typeof Number) {
-      setStatus('Invalid amount, Please contact support')
-      return status
+      const newBalance = await res.json();
+      console.log("newBalance "+newBalance.value.balance);
+      setUser({ ...user, balance: newBalance.value.balance});
+  
+      if (amount === null || typeof user.balance !== 'number') {
+        setStatus('Balance error');
+      } else {
+        setStatus(null); // Reset status if no errors
+      }
+  
+      return { balance: user.balance, status: status };
+    } catch (err) {
+      console.error(err);
+      setStatus('Error updating balance');
+      return { balance: user.balance, status: status };
     }
-    return (user.balance, status)
   };
-
+  
   function logIn(email, password) {
-    console.log("login");
+    if (!email || !password) {
+      console.error("Email and password are required.");
+      // You can also throw an error or return a specific error object here if needed.
+      return;
+    }
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 

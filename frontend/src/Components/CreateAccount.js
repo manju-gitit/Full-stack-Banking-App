@@ -2,7 +2,8 @@ import { useState } from "react";
 import Card from './Common/Card' 
 import { Link } from "react-router-dom"
 
-const baseUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+//const baseUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+const baseUrl = 'http://3.140.113.245:3001';
 
 export function CreateAccount({ initializeUser, createWithFirebase, googleLogin }) {
     const [show, setShow] = useState(true);

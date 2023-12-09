@@ -7,8 +7,9 @@ export function Deposit({ adjustMoney, balance }) {
     const [statusMessage, setStatusMessage] = useState('');
     const [depositAmount, setDepositAmount] = useState('');
 
-    const validationError = fundsValidations(depositAmount)
-
+    const validationError = fundsValidations(depositAmount)  
+    var depositValue
+    var respObj = {}
     function handleDeposit() {
 
         if (validationError) {
@@ -16,22 +17,26 @@ export function Deposit({ adjustMoney, balance }) {
             console.log('validation result exists in deposit.js')
             return;
         }
-
-        adjustMoney(depositAmount)
-        setDepositAmount('');
-        setStatusMessage('Deposit successful');
-
+        try {   
+            respObj = adjustMoney(depositAmount)
+            balance = respObj.value.balance
+            console.log("balance"+balance)
+            setDepositAmount('');
+            setStatusMessage('Deposit successful');    
+        } catch(error) {
+            console.log("Presenting deposit status went wrong")
+        }
     }
 
     return (
         <Card
             bgcolor="info"
-            header='Deposit'
-            status=''
+            header="Deposit"
+            status={statusMessage}
             body=
             {
-                <>
-                    Current Account Balance {balance}
+                <div>
+                    Current Account Balance {JSON.stringify(balance)} <br/>
                     <br />
                     Deposit Amount
                     <br />
@@ -47,13 +52,13 @@ export function Deposit({ adjustMoney, balance }) {
                     <button
                         type="submit"
                         className="btn btn-light"
-                        onClick={() => handleDeposit()}
+                        onClick={handleDeposit}
                         disabled={depositAmount === ''}
                     >
-                        Deposit
+                    Deposit
                     </button>
 
-                </>
+                </div>
 
             }
         />

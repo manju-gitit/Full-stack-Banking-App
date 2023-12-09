@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "jest"
+    "test": "mocha ./tests/* --exit"
   },
   "author": "abel@mit.edu",
   "license": "MIT",
@@ -16,6 +16,11 @@
     "firebase": "^10.7.0",
     "http-server": "^14.1.1",
     "lowdb": "^1.0.0",
-    "mongodb": "^3.7.4"
+    "mocha": "^10.2.0",
+    "mongodb": "^3.7.4",
+    "nodemon": "^3.0.2",
+    "supertest": "^6.3.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   }
 }
