@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
+
 function NavBar({ user, isLoggedIn, logOut }){
   const location = useLocation();
   return(
@@ -33,7 +34,7 @@ function NavBar({ user, isLoggedIn, logOut }){
         </div>
       </nav>  
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="text-light ml-auto">
+        <div className="text-light flex-row">
           <p className="nav-link px-3 m-0">Hello {isLoggedIn ? user.name : 'Guest'}</p>
         </div>
         <div className="nav navbar-nav navbar-right">
