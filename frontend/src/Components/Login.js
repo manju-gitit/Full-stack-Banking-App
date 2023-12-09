@@ -18,7 +18,12 @@ function signInWithEmailPassword(email, password) {
 // duplicated on createaccount.js should be moved to shared folder when custom hook is created
 function handleGoogleLogin() {
     console.log("google sign in clicked");
-    googleLogin()
+    try{
+        googleLogin()
+    }catch(err) {
+        console.log("error in google login")
+        throw err
+    }
     setStatusMessage("Logged in with Google")
 };
 

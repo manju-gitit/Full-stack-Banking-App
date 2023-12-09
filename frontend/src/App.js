@@ -60,14 +60,13 @@ function App() {
       if (!res.ok) {
         throw new Error('Failed to update balance');
       }
-  
+
       const newBalance = await res.json();
-      setUser({ ...user, balance: newBalance });
+      console.log("newBalance "+newBalance.value.balance);
+      setUser({ ...user, balance: newBalance.value.balance});
   
-      if (amount === null) {
+      if (amount === null || typeof user.balance !== 'number') {
         setStatus('Balance error');
-      } else if (typeof user.balance !== 'number') {
-        setStatus('Invalid amount, Please contact support');
       } else {
         setStatus(null); // Reset status if no errors
       }
@@ -80,9 +79,12 @@ function App() {
     }
   };
   
-
   function logIn(email, password) {
-    console.log("login");
+    if (!email || !password) {
+      console.error("Email and password are required.");
+      // You can also throw an error or return a specific error object here if needed.
+      return;
+    }
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
